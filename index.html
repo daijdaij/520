@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Be My Valentine?</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <h1 id="question">Will you be my Valentine? 💘</h1>
+
+    <div class="buttons">
+        <button id="yesBtn" onclick="sayYes()">Yes ❤️</button>
+        <button id="noBtn" onclick="sayNo()">No 💔</button>
+    </div>
+
+    <script>
+        const messages = [
+            "Are you sure? 🥺",
+            "Really sure?? 😢",
+            "Think again... 💔",
+            "You're breaking my heart... 😭",
+            "Last chance... 😳",
+            "Okay this is getting awkward... 😶"
+        ];
+
+        let noCount = 0;
+
+        function sayNo() {
+            const question = document.getElementById("question");
+            const yesBtn = document.getElementById("yesBtn");
+            const noBtn = document.getElementById("noBtn");
+
+            if (noCount < messages.length) {
+                question.innerText = messages[noCount];
+                noCount++;
+            } else {
+                question.innerText = "You have to say yes now 😈";
+                noBtn.style.display = "none";
+            }
+
+            // Grow Yes button
+            let yesSize = parseFloat(window.getComputedStyle(yesBtn).fontSize);
+            yesBtn.style.fontSize = (yesSize + 5) + "px";
+
+            // Shrink No button
+            let noSize = parseFloat(window.getComputedStyle(noBtn).fontSize);
+            if (noSize > 10) {
+                noBtn.style.fontSize = (noSize - 2) + "px";
+            }
+        }
+
+        function sayYes() {
+            document.getElementById("question").innerText = 
+                "YAYYY ❤️ I knew you'd say yes!";
+            document.getElementById("yesBtn").style.display = "none";
+            document.getElementById("noBtn").style.display = "none";
+        }
+    </script>
+
+</body>
+</html>
